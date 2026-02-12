@@ -28,7 +28,7 @@ Discounts above 20% destroy profitability across all segments:
 ## Dashboard
 ![Dashboard Screenshot](assets/dashboard.png)
 
-[View Looker Studio Dashboard](PASTE_YOUR_LINK_HERE)
+[View Looker Studio Dashboard](https://lookerstudio.google.com/reporting/425bca71-fad7-425a-b274-e64f752a42dc)
 
 ## Analysis Highlights
 - Monthly Revenue Trend: Consistent growth from 1K EUR (Jan 2020) to 110K+ EUR (Dec 2023)
