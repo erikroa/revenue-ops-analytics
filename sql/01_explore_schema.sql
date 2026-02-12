@@ -1,18 +1,14 @@
 -- ============================================
 -- 01: DATA EXPLORATION
--- Revenue Operations Analytics Portfolio
 -- ============================================
 
--- Row count
 SELECT COUNT(*) AS total_rows FROM `revenue_ops.saas_sales`;
 
--- Date range
 SELECT
   MIN(`Order Date`) AS earliest_order,
   MAX(`Order Date`) AS latest_order
 FROM `revenue_ops.saas_sales`;
 
--- Unique counts for key dimensions
 SELECT
   COUNT(DISTINCT `Customer ID`) AS unique_customers,
   COUNT(DISTINCT `Product`) AS unique_products,
