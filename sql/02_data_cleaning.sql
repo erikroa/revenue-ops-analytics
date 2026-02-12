@@ -1,10 +1,7 @@
 -- ============================================
 -- 02: DATA CLEANING & TRANSFORMATION
--- Revenue Operations Analytics Portfolio
 -- ============================================
 
--- Create cleaned view with standardized column names
--- and derived revenue operations metrics
 CREATE OR REPLACE VIEW revenue_ops.saas_sales_cleaned AS
 SELECT
   `Row ID`                          AS row_id,
