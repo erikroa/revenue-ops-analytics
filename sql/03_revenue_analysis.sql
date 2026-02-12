@@ -1,11 +1,8 @@
 -- ============================================
 -- 03: REVENUE OPERATIONS ANALYSIS
--- Revenue Operations Analytics Portfolio
 -- ============================================
 
--- -----------------------------------------------
 -- 1. MONTHLY RECURRING REVENUE (MRR) TREND
--- -----------------------------------------------
 SELECT
   order_year,
   order_month,
@@ -18,9 +15,7 @@ FROM revenue_ops.saas_sales_cleaned
 GROUP BY order_year, order_month
 ORDER BY order_year, order_month;
 
--- -----------------------------------------------
 -- 2. DISCOUNT IMPACT ON REVENUE (Deal Desk View)
--- -----------------------------------------------
 SELECT
   discount_tier,
   COUNT(*) AS total_deals,
@@ -32,9 +27,7 @@ FROM revenue_ops.saas_sales_cleaned
 GROUP BY discount_tier
 ORDER BY avg_margin_pct DESC;
 
--- -----------------------------------------------
 -- 3. CUSTOMER LIFETIME VALUE (Top 20 Customers)
--- -----------------------------------------------
 SELECT
   customer,
   segment,
@@ -50,9 +43,7 @@ GROUP BY customer, segment, industry
 ORDER BY lifetime_revenue DESC
 LIMIT 20;
 
--- -----------------------------------------------
 -- 4. PRODUCT PERFORMANCE & MIX
--- -----------------------------------------------
 SELECT
   product,
   COUNT(*) AS deals,
@@ -64,9 +55,7 @@ FROM revenue_ops.saas_sales_cleaned
 GROUP BY product
 ORDER BY total_revenue DESC;
 
--- -----------------------------------------------
 -- 5. REGIONAL REVENUE BREAKDOWN
--- -----------------------------------------------
 SELECT
   region,
   subregion,
@@ -78,9 +67,7 @@ FROM revenue_ops.saas_sales_cleaned
 GROUP BY region, subregion
 ORDER BY total_revenue DESC;
 
--- -----------------------------------------------
 -- 6. YoY GROWTH BY SEGMENT
--- -----------------------------------------------
 WITH yearly AS (
   SELECT
     segment,
@@ -101,9 +88,7 @@ SELECT
 FROM yearly
 ORDER BY segment, order_year;
 
--- -----------------------------------------------
--- 7. DISCOUNT ABUSE DETECTION (RevOps Red Flags)
--- -----------------------------------------------
+-- 7. DISCOUNT ABUSE DETECTION
 SELECT
   contact_name,
   segment,
