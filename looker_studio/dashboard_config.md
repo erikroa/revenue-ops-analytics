@@ -1,7 +1,7 @@
 # Looker Studio Dashboard
 
 ## Dashboard Link
-[SaaS Revenue Operations Dashboard](PASTE_YOUR_LINK_HERE)
+[SaaS Revenue Operations Dashboard](https://lookerstudio.google.com/reporting/425bca71-fad7-425a-b274-e64f752a42dc)
 
 ## Data Source
 - BigQuery View: revenue_ops.saas_sales_cleaned
