@@ -39,12 +39,3 @@ Discounts above 20% destroy profitability across all segments:
 ## Skills Demonstrated
 SQL (CTEs, Window Functions, CASE), BigQuery, Looker Studio, Revenue Operations, Deal Desk Analytics
 ```
-
----
-
-**5. .gitignore**
-```
-*.csv
-__pycache__/
-.env
-.vscode/
