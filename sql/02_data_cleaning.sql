@@ -1,6 +1,3 @@
--- ============================================
--- 02: DATA CLEANING & TRANSFORMATION
--- ============================================
 
 CREATE OR REPLACE VIEW revenue_ops.saas_sales_cleaned AS
 SELECT
