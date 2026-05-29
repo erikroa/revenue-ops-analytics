@@ -1,21 +1,41 @@
-# Looker Studio Dashboard
+# Looker Studio Dashboard Configuration
 
-## Dashboard Link
-[SaaS Revenue Operations Dashboard](https://lookerstudio.google.com/reporting/425bca71-fad7-425a-b274-e64f752a42dc)
+## Dashboard Overview
+**Name:** Revenue Operations Analytics
+**Data source:** BigQuery - `revenue_ops.saas_sales_cleaned`
+**Rows:** 9,994 SaaS transactions
 
-## Data Source
-- BigQuery View: revenue_ops.saas_sales_cleaned
-- 9,994 rows | 2020-01-04 to 2023-12-31
+---
 
-## Charts
-1. KPI Scorecards - Customers, Avg Margin %, Total Profit, Total Revenue
-2. Monthly Revenue Trend - Time series of SUM(sales) by month
-3. Discount Impact on Profit - Bar chart showing profit by discount tier
-4. Revenue by Segment - Donut chart (SMB 50.6%, Strategic 30.7%, Enterprise 18.7%)
-5. YoY Segment Performance - Table with sales, profit, avg margin by segment/year
+## Page 1: Revenue Overview
 
-## Key Insight
-Discounts above 20% destroy profitability:
-- No Discount: +320,988 EUR profit (29.5% margin)
-- High Discount (41%+): -99,559 EUR loss (-77.4% margin)
-- Recommendation: Cap discounts at 20% to protect 135K+ EUR in annual profit
+| Chart | Type | Dimension | Metric |
+|---|---|---|---|
+| Total Revenue | Scorecard | - | SUM(sales) |
+| Total Profit | Scorecard | - | SUM(profit) |
+| Total Orders | Scorecard | - | COUNT(order_id) |
+| Revenue by Segment | Bar chart | segment | SUM(sales) |
+| Revenue by Product | Bar chart | product | SUM(sales) |
+| Monthly Revenue Trend | Line chart | order_date (month) | SUM(sales) |
+
+---
+
+## Page 2: Profitability & Discounting
+
+| Chart | Type | Dimension | Metric |
+|---|---|---|---|
+| Avg Profit Margin | Scorecard | - | AVG(profit_margin_pct) |
+| Discount Impact on Margin | Bar chart | discount_tier | AVG(profit_margin_pct) |
+| Profit by Region | Bar chart | region | SUM(profit) |
+| Unprofitable Deals | Scorecard | - | COUNTIF(profit < 0) |
+
+---
+
+## Key Metrics Defined
+
+| Metric | Formula |
+|---|---|
+| Profit Margin % | (Profit / Sales) * 100 |
+| Net Sales | Sales * (1 - Discount) |
+| Cost | Sales - Profit |
+| Discount Tier | Bucketed: None / Low / Medium / High |

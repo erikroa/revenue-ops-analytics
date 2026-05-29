@@ -1,41 +1,84 @@
 # Revenue Operations Analytics
 
-**SaaS deal desk analytics using BigQuery, SQL, and Looker Studio**
+A SQL analytics project built on BigQuery demonstrating end-to-end revenue operations analysis, from raw data ingestion to a live Looker Studio dashboard.
 
-## Project Overview
-Analysis of 9,994 SaaS transactions (2020-2023) across 99 customers, 14 products, and 48 countries to uncover revenue optimization opportunities.
+**Stack:** BigQuery · SQL · Looker Studio · Google Cloud Platform
+**Dataset:** 9,994 SaaS transactions across segments, regions, and products
+**Portfolio:** [github.com/erikroa](https://github.com/erikroa)
 
-## Key Finding
-Discounts above 20% destroy profitability across all segments:
-- No Discount: +320,988 EUR profit (29.5% margin)
-- High Discount (41%+): -99,559 EUR loss (-77.4% margin)
-- Recommendation: Cap discounts at 20% to protect 135K+ EUR in annual profit
+🔗 **[Live Dashboard](https://lookerstudio.google.com)**
 
-## Technologies
-- **BigQuery** - Cloud data warehouse
-- **SQL** - CTEs, window functions, aggregations
-- **Looker Studio** - Interactive dashboard
-- **Python** - Data extraction (kagglehub)
+---
+
+## Business Purpose
+
+This project answers five core RevOps questions:
+
+1. Which customer segments and products drive the most revenue and profit?
+2. How is revenue trending month over month and year over year?
+3. What is the impact of discounting on profit margins?
+4. Which regions are over- or underperforming?
+5. Where is discount abuse eroding profitability?
+
+---
 
 ## Project Structure
-    sql/
-        01_explore_schema.sql        # Data exploration and profiling
-        02_data_cleaning.sql         # Cleaning view with derived metrics
-        03_revenue_analysis.sql      # MRR, discount impact, YoY growth, CLV
-    looker_studio/
-        dashboard_config.md          # Dashboard documentation and link
 
-## Dashboard
-![Dashboard Screenshot](assets/dashboard.png)
+revenue-ops-analytics/
+├── data/
+│   └── saas_sales.csv          # Raw source data (9,994 transactions)
+├── sql/
+│   ├── 01_explore_schema.sql   # Data exploration and null checks
+│   ├── 02_data_cleaning.sql    # CREATE VIEW with derived metrics
+│   └── 03_revenue_analysis.sql # 7 revenue analysis queries
+├── looker_studio/
+│   └── dashboard_config.md     # Dashboard documentation
+└── README.md
 
-[View Looker Studio Dashboard](https://lookerstudio.google.com/reporting/425bca71-fad7-425a-b274-e64f752a42dc)
+---
 
-## Analysis Highlights
-- Monthly Revenue Trend: Consistent growth from 1K EUR (Jan 2020) to 110K+ EUR (Dec 2023)
-- Discount Impact: 1,393 deals with over 20% discount destroyed 135K EUR in profit
-- Segment Growth: Enterprise surged 51.5% YoY in 2023
-- Discount Abuse Detection: Flagged high-discount contacts for deal desk review
+## SQL Methodology
 
-## Skills Demonstrated
-SQL (CTEs, Window Functions, CASE), BigQuery, Looker Studio, Revenue Operations, Deal Desk Analytics
-```
+### Step 1 - Exploration (`01_explore_schema.sql`)
+Row counts, date ranges, unique dimension counts, segment breakdown, and NULL checks across critical columns.
+
+### Step 2 - Cleaning (`02_data_cleaning.sql`)
+Creates `revenue_ops.saas_sales_cleaned` view with:
+- Standardized column names
+- Extracted date parts (year, month, quarter)
+- Derived metrics: cost, profit margin %, net sales, discount tier
+
+### Step 3 - Analysis (`03_revenue_analysis.sql`)
+Seven business-focused queries:
+
+| Query | Business Question |
+|---|---|
+| Revenue by segment | Which segments drive the most value? |
+| Revenue by product | Which products are most profitable? |
+| Monthly trend | How is revenue growing over time? |
+| Discount impact | How does discounting affect margins? |
+| Regional breakdown | Where is revenue concentrated? |
+| YoY growth by segment | Which segments are accelerating? |
+| Discount abuse detection | Where is over-discounting destroying profit? |
+
+---
+
+## Key Finding
+
+Deals with discounts above 40% generate **negative profit margins of -108.9%** on average - destroying $99K in profit across 933 transactions. This is the kind of RevOps red flag that directly informs pricing governance and sales compensation design.
+
+| Discount Tier | Deals | Revenue | Profit | Avg Margin |
+|---|---|---|---|---|
+| No Discount | 4,798 | $1,087,908 | $320,988 | 34.0% |
+| Low (1-20%) | 3,803 | $846,522 | $100,785 | 17.4% |
+| Medium (21-40%) | 460 | $234,138 | -$35,817 | -16.7% |
+| High (41%+) | 933 | $128,632 | -$99,559 | -108.9% |
+
+---
+
+## Author
+
+**Erik** - Senior CX Operations Manager at Shiftmove · GCP Data Analytics Certified
+Transitioning from Customer Success into Revenue Operations & Data Analytics.
+
+[LinkedIn](https://linkedin.com/in/erikroa) · [GitHub](https://github.com/erikroa)
